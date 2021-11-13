@@ -1,0 +1,13 @@
+**How to count lines in a document?**
+`wc -l <filename>`
+
+**Get a count of only the directories in the current directory**
+
+`echo */ | wc`
+
+2nd digit represents no. of directories.
+
+find . -type f -name "abc*" 
+The above command will search the file that starts with abc under the current working directory.
+
+
