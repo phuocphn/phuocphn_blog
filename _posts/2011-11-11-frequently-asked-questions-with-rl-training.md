@@ -87,3 +87,16 @@ Well say A2C and A3C handle this by running many copies of the env in parallel. 
 ACER takes that further by including experience replay along with AC. [[ref]](https://www.reddit.com/r/reinforcementlearning/comments/alua6f/why_are_correlated_samples_bad_in_dqn/)
 
 Experience replay is a key technique behind many recent advances in deep reinforcement learning. Allowing the agent to learn from earlier memories can speed up learning and break undesirable temporal correlation. [[ref]](https://proceedings.allerton.csl.illinois.edu/2018/media/files/0091.pdf)
+
+
+#### **What is the `explained_variance` in the `A2C` training log ?**
+
+The explained variance score explains the *dispersion of errors of a given dataset*, and the formula is written as follows:
+
+$$explained\_variance(y, \hat{y}) == 1 - \frac{Var(y-\hat{y})}{Var(y)}$$
+
+Here, $$Var(y-\hat{y})$$ and $$Var(y)$$ is the variance of prediction errors and actual values respectively. Scores close to 1.0 are highly desired, indicating better squares of standard deviations of errors. And vice versa, lower values are worse.
+
+Referces:
+1. [Explained variance score as a risk metric](https://www.oreilly.com/library/view/mastering-python-for/9781789346466/d1ac368a-6890-45eb-b39c-2fa97d23d640.xhtml)
+2. [Explained variance score](https://scikit-learn.org/stable/modules/model_evaluation.html#explained-variance-score)

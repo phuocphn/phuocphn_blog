@@ -108,6 +108,47 @@ Chargebacks are a frequent occurrence for businesses in high-risk industries and
 > You need to setup correctly before it happens.
 
 
+#### **How To Register Stripe Account in Unsupported Countries ?**
+If you’re struggling with maintaining your Stripe accounts, or even worse you’re unable to open a Stripe account due to your location, we got a solution that’ll make things much easier for you.
+
+
+**What are required?**
+- LLC & EIN
+- Virtual US address
+- US phone number
+- Payoneer account
+
+**Action Steps:**
+
+1. Visit https://www.delawareinc.com/ourservices/compare-internationalpackages
+2. Choose a package and apply for company formation in the US, the basic
+package cost $179.00, in 3-5 days your company will be formed and the
+formation documents sent to you via email.
+3. Ask them to also help with EIN (Federal Tax ID) – Cost $95.00. it can take
+up to 7 – 20 business days to get the EIN.
+4. Then get a business address in the US, you can search the internet to get one
+for yourself charges between $5 - $15 monthly (your choice).
+5. Visit www.sonetel.com to get a phone number in the US, (they can redirect
+all your calls back to a cell phone in your country for monthly fee of about $5
+6. Visit www.payoneer.com to register for an account, Payoneer offers a virtual
+US bank account that you can use to receive payment from Stripe.
+7. Visit www.stripe.com to create an account. Stripe will need the following:
+- LLC formation details
+- EIN(Federal Tax ID)
+- Your US business address
+- A US phone number
+- An Identification document of the business owner (International passport or
+Government Driving License of your country).
+When the details you provide Stripe has been verified, your account will be
+setup and you can then add it as a payment processor in your Shopify Store to
+receive all types of payments. 
+
+[Source: Quang Vinh](https://www.youtube.com/watch?v=3znRWDlo1xM&ab_channel=QuangVinh)
+
+Other services:
+
+[Buy Verified Stripe Account](https://feycan.com/service/buy-verified-stripe-account)
+
 Working with dropshipping you will involve a lot of chargebacks, if you need a third party to help you about this issue. You can consider to use: [ChargeBack911](https://chargebacks911.com/)
 
 
@@ -158,6 +199,7 @@ Source: [17 Best Payment Gateways for Dropshipping & eCommerce][17-best-payment-
 Q: Can I start using a payment gateway before registering my company? [Quora](https://www.quora.com/Can-I-start-using-a-payment-gateway-before-registering-my-company)
 
 A: Yes, it's possible, but without business documents, you won't be able to withdraw money.
+
 
 #### **Conclusion** 
 Choosing a payment gateway for your business can be quite difficult. There are quite a few things to pay attention to and each payment gateway has its pros and cons.

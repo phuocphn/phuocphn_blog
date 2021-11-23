@@ -1,0 +1,139 @@
+---
+layout: post
+title:  "t-SNE: A Popular High Dimensional Reduction Technique"
+date:   2021-11-17 14:00:00 +0900
+categories: ml
+tags: tnse, reduction
+author: Phuoc. Pham
+---
+
+
+This article will cover the following things:
+- High Overview about t-SNE.
+- The differences between PCA and t-SNE.
+- Some Misconceptions about interpreting t-SNE results.
+- Python Code Example (continuous values)
+
+
+#### **Introduction**
+t-SNE (stards for t-Distributed Stochastic Neighbor Embeddings), it is unsupervised, non-linear technique primarilly used for data exploration and visualizing high-dimensional data.
+
+It can help you see how your data clusters in higher dimensional spaces and very useful in any classification or segmentation tasks.
+
+*A little more detail:*
+This algorithm is quite suited to non-linear data with high-dimensions. 
+Models each high-dimensional object by a two or three-dimensional point so similar objects are modeled by nearby points and dissimilar objects are modeled by distant points with high probability.
+
+t-SNE has been used for visualization in a wide range of applications, including genomics, computer security research, natural language processing, music analysis, cancer research, bioinformatics, and biomedical signal processing.
+
+
+#### **High Overview about How it works.**
+
+The t-SNE algorithm comprises two main stages.
+1. First, t-SNE constructs a prbability distribution over pairs of high-dimensional objects in such a way that similar objects are assigned a high probability while disimilar points are assigned a low probability.
+
+2. Then, t-SNE defines a similar probability distribution over the points in the low-dimensional map, and it minimizes the KullBack-Leibler divergence (KL divergence) between the two distributions w.r.t the locations of the points in the map.
+
+**Note**: Kullback-Leibler divergence or KL divergence is is a measure of how one probability distribution diverges from a second, expected probability distribution.
+
+More details on the t-SNE algorithm can be found in: [T-distributed Stochastic Neighbor Embedding(t-SNE), Medium](https://towardsdatascience.com/t-distributed-stochastic-neighbor-embedding-t-sne-bb60ff109561)
+
+While the original algorithm uses the Euclidean distance between objects as the base of its similarity metric, this can be changed as appropriate. For NLP we might use cosine similarity.
+
+#### **A Classic Example**
+The following example shows how t-SNE being implemented on the digits dataset. the dataset has 700+ features which it uses to classify different digits. t-SNE helps us see which numbers are similar in higher dimensions.
+
+<p align="center">
+  <img src="http://nlml.github.io/images/tsne/tsne-mnist.png">
+</p>
+
+#### **Comparison to PCA**
+You might want to see how t-SNE differs from Principla Component Analysis.
+- PCA is linear technique while works very well with non-linear relationships between variables.
+- PCA preserves the global relationships between data points while t-SNE **only preserves the local relationships**
+
+| # | PCA                                                                   | t-SNE                                                                                |
+|---|-----------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| 1 | It is a linear dimensionality reduction technique                     | It is a non-linear dimensionality reduction technique                                |
+| 2 | It tries to preserve the global structure of the data.                | It tries to preserve the local structure (cluster) of data                           |
+| 3 | It does not work well as compared to t-SNE                            | It is one of the best dimensionality reduction technique                             |
+| 4 | It does not involve hyperparameters                                   | It involves hyperparameters such perplexity, learning rate and number of steps.      |
+| 5 | It gets high affected by outliers                                     | It can handle outliers                                                               |
+| 6 | PCA is a deterministric algorithm                                     | It is a non-deterministric or randomised algorithm                                   |
+| 7 | It works by rotating the vectors for preserving variacne              | It works by minimizing the distance between point in a Guassian                      |
+| 8 | We can find decide on how much variance to preserve using eign values | We cannot preserve variance instead we can preserve distance using hyper-parameters. |
+
+
+**What is a non-linear transformation?**
+Linear vs. non-linear are two different types of transformations. Here gives the details of the linear transformation.
+
+
+A linear transformation between two vector spaces $$V$$ and $$W$$ is a map $$T:V \to W$$ such that the following hold:
+
+- $$T(v1+v2)=T(v1)+T(v2)$$ for any vectors v1 and v2 in V, and
+
+- $$T(\alpha v)=\alpha T(v)$$ for any scalar alpha.
+
+
+For example, in dimension reduction domain, principal component analysis (PCA) is a linear transformation. And kernel PCA is a non-linear one. [[ref]](https://stats.stackexchange.com/questions/319771/linear-versus-nonlinear-dimensionality-reduction-techniques)
+
+
+
+
+
+#### **Endings+Points to note**
+
+- t-SNE is used strictly for data exploration. While it might be tempting to use it for clustering, it doesn't help there. Remember it is not deterministic and only preserves local structure.
+- t-SNE can be used to lower high dimension spaces into 2-3 dimensions. Not only is this useful for visualizations, but we can actually use this in our models as input.
+- There are other alternatives such as UMAP. Learning them all wil be useful to figuring out your task needs specifically.
+
+- t-SNE does dimensionality reduction in a **non-linear and local way**, so different regions of data could be transformed differently.
+
+
+#### **Some Misconceptions**
+
+There is an incredibly good article on [Medium/Why You Are Using t-SNE Wrong](https://towardsdatascience.com/why-you-are-using-t-sne-wrong-502412aab0c0) mentions about some misunderstanding interpretation that many people have when they are trying to use t-SNE.
+
+The following pharagraph is a short summarization for the above mentioned article.
+
+1. **The meaning of perplexity**, t-SNE has a hyper-parameter called perplexity. Perplexity balances the attention t-SNE gives to local and global aspects of the data and can have large effects on the resulting plot. There are a few notes on this parameter:
+- It is roughly a guess of the number of close neighbors each point has. Thus, a denser dataset usually requires a higher perplexity value.
+- It is recommended to be between 5 and 50.
+- It should be smaller than the number of data points.
+The biggest mistake people make with t-SNE is only using one value for perplexity and not testing how the results change with other values. If choosing different values between 5 and 50 significantly change your interpretation of the data, then you should consider other ways to visualize or validate your hypothesis.
+
+2. **You cannot see the relative sizes of clusters in a t-SNE plot**. This point is crucial to understand as t-SNE naturally expands dense clusters and shrinks spares ones. I often see people draw inferences by comparing the relative sizes of clusters in the visualization. Don’t make this mistake.
+3. **Distances between well-separated clusters in a t-SNE plot may mean nothing**. Another common fallacy. So don’t necessarily be dismayed if your “beach” cluster is closer to your “city” cluster than your “lake” cluster.
+4. **Clumps of points — especially with small perplexity values — might just be noise**. It is important to be careful when using small perplexity values for this reason. And to remember to always test many perplexity values for robustness.
+
+
+
+#### **Python Code Example**
+The following example shows how to visualize the t-SNE results. This code is used for continuous values only!.
+
+{% highlight python %}
+from matplotlib import pyplot as plt
+from sklearn.manifold import TSNE
+
+tsne = TSNE(n_components=2, verbose=1, 
+		perplexity=50, n_iter=1000, learning_rate=200)
+tsne_results = tsne.fit_transform(data.detach().cpu().numpy())
+
+# plot the result
+vis_x = tsne_results[:, 0]
+vis_y = tsne_results[:, 1]
+plt.scatter(vis_x, vis_y, c=y_data, cmap=plt.cm.get_cmap("jet", 10))
+plt.colorbar(ticks=range(10))
+plt.clim(-0.5, 9.5)
+plt.show()
+
+{% endhighlight %}
+
+#### **References**
+
+1. [TSNE: Machine Learning Made Simple, Devansh: Machine Learning Made Simple](https://www.youtube.com/watch?v=T8Gx9HavTxg&ab_channel=Devansh%3AMachineLearningMadeSimple)
+2. [Why You Are Using t-SNE Wrong](https://towardsdatascience.com/why-you-are-using-t-sne-wrong-502412aab0c0)
+3. [Visualizing with t-SNE](https://indicodata.ai/blog/visualizing-with-t-sne/)
+4. [TSNE Visualization Example in Python](https://www.datatechnotes.com/2020/11/tsne-visualization-example-in-python.html)
+5. [Introduction to t-SNE](https://www.datacamp.com/community/tutorials/introduction-t-sne)
+6. [t-SNE Python Example](https://towardsdatascience.com/t-sne-python-example-1ded9953f26)

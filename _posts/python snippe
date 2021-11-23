@@ -1,0 +1,49 @@
+List all files in the given directory by using `os.walk()`
+
+os.walk(top[, topdown=True[, onerror=None[, followlinks=False]]])
+
+
+import os
+for root, dirs, files in os.walk(".", topdown=False):
+    for name in files:
+        print(os.path.join(root, name))
+    for name in dirs:
+        print(os.path.join(root, name))
+
+Enums
+Python doesn't support Enums, but you can use the following way to construct enums in Python
+
+class Shapes:
+    Circle, Square, Triangle, Quadrangle = range(4)
+
+print(Shapes.Circle)
+print(Shapes.Square)
+print(Shapes.Triangle)
+print(Shapes.Quadrangle)
+
+Python Simple HTTP Server 
+
+# Python 2.x
+python -m SimpleHTTPServer
+
+# Python 3.x
+python -m http.server
+
+
+
+# Find a modules path 
+import a_module
+print(a_module.__file__)
+
+
+"""Concatenate long strings elegantly 
+across line breaks in code"""
+
+my_long_text = ("We are no longer the knights who say Ni! "
+                "We are now the knights who say ekki-ekki-"
+                "ekki-p'tang-zoom-boing-z'nourrwringmm!")
+
+
+
+https://cuccode.com/python_beginner_tips.html
+
