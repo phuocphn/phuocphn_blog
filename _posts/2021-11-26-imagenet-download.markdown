@@ -60,4 +60,3 @@ find val/ -name "*.JPEG" | wc -l
 4. [Working with ImageNet (ILSVRC2012) Dataset in NVIDIA DIGITS](https://jkjung-avt.github.io/ilsvrc2012-in-digits/)
 
 
-{% include disqus_comments.html %}
