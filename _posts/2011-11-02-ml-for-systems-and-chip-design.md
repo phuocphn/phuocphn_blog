@@ -146,13 +146,37 @@ The following images are kind of a teaser of the final results. Sadly, the image
 
 You can see that the human expert took 6-8 weeks to generate this placement in conjuction with (or in the loop with) very expensive EDA tools. The proposed method only took 24 hours to generate the super-human placement that has lower wire lengths.
 
-**What they are ptimizing for (Objective Function)**
+**What they are optimizing for (Objective Function)**
 
 The objective function is basically to minimize the bellow cost function or to maximize the expected reward given the placement $$P$$ of a netlist $$G$$ over the average expected reward of all the graphs in our training set.
 
 ![Objective function](https://i.ibb.co/wdJB0Kc/objective-fn.png)
 
 A hybrid approach to placement optimization is applied, the basic idea is that the RL policy is trained to play some macros of netlist one at a time and then *Force-Directed Method* (this method models this entire system as a set Springs, so it can pull connected nodes tightly towards each other). The reason for this is that the macro placement problem is much more complicated in a certain sense and it was kind of unsolved problem because of the fact that macros have non negligible area, therefore, standard cells are so small that you can basically model them as having no area, and so as many approaches are unlocked by this, so you can take various analytic approaches and almost prove that you have an optimal placement, whereas macros you cannot make these assumptions. Therefore, you want to tackle this hard part of placement and reduce the complexity of the RL problem  by focusing just on the macros.
+
+
+### **Terminology**
+*(just for reference purposes)*
+
+**What is a macro ?**
+
+Macros are intellectual properties that you can  use in your design. You do not need to design it. For example, memories, processor core, serdes, PLL etc.  A macro can be hard or soft macro. Soft macro and Hard macro are categorized as IP.
+
+<p align="center">
+  <img src="https://1.bp.blogspot.com/-v7L70PlQ1cc/XjhnpS7aUaI/AAAAAAAAiX0/cvIEuZyDWjg957TkDY1hodxkWWJroq6RgCLcBGAsYHQ/s640/placement2.PNG">
+</p>
+
+
+
+**Soft Macros**
+
+Soft macros are used in SOC implementations. Soft macros are synthesizble RTL form, are more flexible than hard macros in terms of reconfigurability. Soft macros are not specific to any manufacturing process and have the disadvantage of being unpredictable in terms of timing, area, performance, or power.  Soft macros carry greater IP protection risks because RTL source code is more portable and therefore, less easily protected than either a netlist or physical layout data. Soft macros are editable and can contain standard cells, hard macros, or other soft macros.
+
+
+**Hard Macros**
+
+Hard macros are targeted for specific IC manufacturing technology. They are block level designs which are optimized for power or area or timing and silicon tested. While accomplishing physical design it is possible to only access pins of  hard macros unlike soft macros which allow us to manipulate the RTL.  Hard macro is a block that is generated in a methodology other than place and route and is imported into physical design database as a GDS2 file.
+
 
 ### **Knowledge Transfer Across Chips**
 
@@ -250,3 +274,4 @@ Other sections/ information are beyong the scope of this note. For the experimen
 
 1. [Lecture by Azalia Mirhoseini & Anna Goldie (CS 159 Spring 2020)](https://www.youtube.com/watch?v=lBzh9WY5hpU&t=2418s)
 2. [Chip Design with Deep Reinforcement Learning](http://ai.googleblog.com/2020/04/chip-design-with-deep-reinforcement.html)
+3. [What is macro?](http://88physicaldesign.blogspot.com/2015/10/what-is-macro.html)

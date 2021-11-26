@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "What is Payment Gateway & Choosing The Right Payment Gateway Provider For Your Shopify Store"
+title:  "What is Payment Gateway & Choosing The Right One For Your Shopify Store"
 date:   2021-11-02 14:00:00 +0900
 categories: ecommerce
 tags: payment gateway

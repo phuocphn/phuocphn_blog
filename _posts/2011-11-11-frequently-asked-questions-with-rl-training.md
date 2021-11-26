@@ -3,7 +3,7 @@ layout: post
 title:  "Frequently Asked Questions (FAQ) about RL Agent Training."
 date:   2021-11-11 12:24:00 +0900
 categories: research
-tags: reinforcement, learning, algorithm
+tags: reinforcement learning algorithm
 author: Phuoc. Pham
 ---
 
