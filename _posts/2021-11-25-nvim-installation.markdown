@@ -5,6 +5,7 @@ date:   2021-11-25 14:00:00 +0900
 categories: tool
 tags: nvim
 author: Phuoc. Pham
+comments: true
 ---
 
 

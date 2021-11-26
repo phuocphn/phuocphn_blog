@@ -5,6 +5,7 @@ date:   2021-11-21 21:10:04 +0900
 categories: book_summary 
 tags: life AGI intelligence consciousness
 author: Phuoc. Pham
+comment: true
 ---
 
 This article is a brief summarization of the book "*Life 3.0: Being Human in the Age of Artificial Intelligence*"  (Max Tegmark ). It took me about  2 weeks to read this wonderful book. This post is serve as a reference for future usage.

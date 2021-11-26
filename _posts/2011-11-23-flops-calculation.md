@@ -5,6 +5,7 @@ date:   2021-11-01 14:00:00 +0900
 categories: ml
 tags: tnse, reduction
 author: Phuoc. Pham
+comment: true
 ---
 
 

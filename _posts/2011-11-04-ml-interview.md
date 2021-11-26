@@ -5,6 +5,7 @@ date:   2021-11-04 19:24:00 +0900
 categories: ml 
 tags: interview
 author: Phuoc. Pham
+comment: true
 ---
 
 I recently watched some videos on Youtube about ML interview preparation and the most frequently asked questions during the interview. This post will serve as a reference resource for the future interviews and other viewers, who is also looking for a new ML job position.

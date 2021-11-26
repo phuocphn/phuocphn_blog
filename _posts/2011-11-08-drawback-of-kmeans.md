@@ -5,7 +5,9 @@ date:   2021-11-08 12:24:00 +0900
 categories: ml
 tags: k-means
 author: Phuoc. Pham
+comment: true
 ---
+
 Does K-means requires any assumptions before applying it the your dataset ?
 
 I recently came across this question on [Stack Exchange](https://stats.stackexchange.com/questions/133656/how-to-understand-the-drawbacks-of-k-means/133694#133694), and I thought it offered a great opportunity to explore deeply about this, about the assumptions underlying the K-means algorithm and what would happen if one of these assumptions is broken.

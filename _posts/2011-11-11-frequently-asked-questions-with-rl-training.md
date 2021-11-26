@@ -5,6 +5,7 @@ date:   2021-11-11 12:24:00 +0900
 categories: research
 tags: reinforcement learning algorithm
 author: Phuoc. Pham
+comment: true
 ---
 
 This post contains frequently asked questions you may encounter when working with reinfocement learning. Some of questions are in my research scope and I spent time to figure out and summarize carefully, and some questions aren't as I accidentally saw it somewhere else while browsing for other questions, but I think it will be needed in the future projects. 

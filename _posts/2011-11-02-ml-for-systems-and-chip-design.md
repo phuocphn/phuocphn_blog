@@ -5,6 +5,7 @@ date:   2021-11-02 16:00:00 +0900
 categories: research
 tags: soc chip design rl reinforcement_learning
 author: Phuoc. Pham
+compute: true
 ---
 I have a hard time remembering what I read. This blog post is a summarization of what I have been working for the last 2 months about applying deep reinforcement leanring for RTL synthesis. It will be served for the purpose of future referencing.
 

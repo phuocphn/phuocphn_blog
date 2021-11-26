@@ -5,6 +5,7 @@ date:   2021-11-03 22:24:00 +0900
 categories: ml
 tags: convolution
 author: Phuoc. Pham
+comment: true
 ---
 
 ### **What Is Grouped Convolution ?**
