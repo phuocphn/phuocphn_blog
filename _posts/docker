@@ -1,0 +1,37 @@
+Check docker status:
+sudo systemctl status docker
+
+
+check containers are running:
+sudo docker ps
+
+Run Redis-docker on port [port_number]:
+sudo docker run --name my-first-redis -p [port_number]:6379 -d redis
+
+Install redis-cli
+sudo apt-get install redis-tools
+
+Config Redis
+sudo docker exec -it my-first-redis sh
+redis-cli
+config set notify-keyspace-events KEA
+
+
+Enable keyspace notifications
+By default, keyspace events notifications are disabled. We can enable them in redis.conf or redis-cli as below:
+
+```
+redis-cli config set notify-keyspace-events KEA
+```
+
+[How To Install and Secure Redis on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04)
+[How To Install and Secure Redis on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04)
+https://stackoverflow.com/questions/35745481/redis-cli-with-password/47784479
+How to Install and Configure Redis on Ubuntu 20.04
+
+Fastest way to store a numpy array in redis
+HOW TO WRITE YOUR OWN REDIS KEY EXPIRE LISTENER IN PYTHON
+https://redis.io/topics/rediscli
+[Redis keyspace notifications in python](https://tech.webinterpret.com/redis-notifications-python/)
+[Event Data Pipelines with Redis Pub/Sub, Async Python and Dash](https://itnext.io/event-data-pipelines-with-redis-pub-sub-async-python-and-dash-ab0a7bac63b0?gi=bb353a2a4884)
+https://medium.com/@ashok.tankala/how-to-write-your-own-redis-key-expire-listener-in-python-53e531a97f36
