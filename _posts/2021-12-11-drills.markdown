@@ -1,0 +1,146 @@
+---
+layout: post
+title:  "DRiLLS: Deep Reinforcement Learning for Logic Synthesis"
+date:   2021-12-01 14:00:00 +0900
+categories: paper_summaries
+tags: logic synthesis
+author: Phuoc. Pham
+comments: true
+---
+
+### **Introduction**
+
+Logic synthesis optimization flows mainly consists of three steps:
+- **Pre-mapping optimizations**: technology-dependent transformation are performed to rduce the total area, while adhering to a delay constraint.
+- **Technology mapping**: the generic intermediate nodes are mapped to standard cells of a specific technology (e.g ASIC standard cells)
+- **Post-mapping optimizations**: technology-dependent optimization are performed. (e.g up-sizing and down-sizing)
+
+The logic synthesis optimization flows is a intricate task/ requiring input experienced designers. It is due to the exponentially large search space of the available transformations.
+
+
+### **Methodology**
+
+**Framework Overview**
+There are two major components in the framework: *Logic Synthesis* environment, which is a setup of the design space exploration problem as a reinforcement learning task, and *Reinforcement Learning* environment, which employs an Advantage Actor Critic agent (A2C) to navigate the environment searching for the best optimization at a given state.
+
+![Overview](http://i.imgur.com/Ws1UVEI.png)
+
+**Design State Representation**
+
+A set of metrics retrieved from the synthesis tool on a given circuit design and used as a feature set for the A2C agent. Normalization is also a requirement for model generalization so that can be applied to unseen designs.
+
+$$\mathcal{S} = [\#primary I/O,   \#nodes,   \#edges, \#levels, \#latches, \% ANDs, \% NOTs ]$$
+
+
+Values in the $$\mathcal{S}$$ vector depict representative characteristics of the ciruit. For example, $$\#nodes$$ value directs the agent towards reducing the number of nodes, $$\#levels$$ value steers the agent towards choosing a `balance` transformation.
+
+**Optimization Space (Action Space)**
+
+There are total of 6 primitive transformations: 
+
+$$\mathcal{A} = \{resub, resub -z, rewrite, rewrite -z, refactor, refactor -z, balance\}$$
+
+
+- The first 6 transformations (actions) target size reduction.
+- The last one `balance` aims to reduce the number of levels.
+
+
+**Reward Function**
+
+Multi-objective reward function that takes into account the change in both design area and delay. In particular, the agent is rewarded for reducing the design area while keep the delay under a pre-specified constraint value.
+
+The values and magnitudes for the reward habe been chosen carefully to aid in the agent exploration. 
+
+The below table is a formulation of the multi-objective reward function. **Decr**. stands for Decrease and **Incr**. stands for Increase, **+** and **-** indicate the positive and negative rewards, respectively. The number of symbols indicate the reward magnitude.
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax" colspan="3" rowspan="2"></th>
+    <th class="tg-baqh" colspan="3"><center>Optimizing (Area)</center></th>
+  </tr>
+  <tr>
+    <th class="tg-0lax">Decr.</th>
+    <th class="tg-0lax">None</th>
+    <th class="tg-0lax">Incr.</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax" rowspan="4">Constraint<br>(Delay)</td>
+    <td class="tg-0lax" colspan="2">Met</td>
+    <td class="tg-0lax">+++</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">-</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax" rowspan="3">Not Met</td>
+    <td class="tg-0lax">Decr.</td>
+    <td class="tg-0lax">+++</td>
+    <td class="tg-0lax">++</td>
+    <td class="tg-0lax">+</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">None</td>
+    <td class="tg-0lax">++</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Incr.</td>
+    <td class="tg-0lax">-</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">---</td>
+  </tr>
+</tbody>
+</table>
+
+
+### **Experimental Results**
+
+The proposed methodology is implemented with open-source synthesis framework: ABC v1.01, Python 3.5, Tensorflow, ASAP7 7nm standard cell library. The EPFL arithmetic benchmarks are used for evaluation.
+
+
+#### **Design Space Exploration**
+
+The below graphs show traces of the agent searching for an optimized design that minimizes area, and meets the delay constraint. As we can see, there are various trials of the agent to execute a transformation that reduces the delay to meet the constraint, but increases the design area such as iteration 30 in `Log2` in interation 26 in `Max`
+
+![Traces](http://i.imgur.com/SxKDeFL.png)
+
+
+#### **Comparison to Other Techniques**
+
+The agent's performance is compared against EPFL best results, exper-crafted scripts, and a greedy heuristic algorithm:
+
+1. **EPFL best results**: best results are provided for size and depth. (from the benchmark suite.)
+2. **Expert-crafted scripts**: a record of expert-crafted synthesis optimizations from other paper.
+3. **Greedy heuristic algorithm**: the authors developed a baseline comparison that takes an initial input design and spawns parallel threads to perform each of the given transformations on the design. Afterwords, each thread performs the mapping sep using the delay constraint. The algorithm then evaluates the mapped designs from all threads, and keeps the one with the minimum area for the next iteration. The process is repeated until two iterations yield the same area.
+
+
+![Results](http://i.imgur.com/Opn4qSW.png)
+
+In a nutshell, the proposed method always better results with other methods, the agent meets the delay constraint in all designs while simultaneously improving the design area by an average of $$13.19\%$$
+
+
+
+<!-- ---
+
+
+
+We relax the area, only focus on the `WNS` constraint, therefore the `reward function` quite _ 
+
+  delay constraint was too tight for the design to meet? 
+Yes, the current `reward function` is not optimally designed to aid in the agent exploration.
+
+
+The current setting faces into a of spare-reward exploration, it's easy to be trapped in a local optima.
+
+We need a way to construct the action space, as the currently, the action space is much big.
+
+
+Need a technique about circuit partitioning. ??
+
+Combinational Logic != Sequential circuit
+
+Some logic already meet the timing const -> wep put to extreme
+pw71 -->
