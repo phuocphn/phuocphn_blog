@@ -47,3 +47,14 @@ my_long_text = ("We are no longer the knights who say Ni! "
 
 https://cuccode.com/python_beginner_tips.html
 
+
+```python
+import multiprocessing
+
+list_tcl_files  =  glob.glob("synthesis_sc/*.tcl")
+pool = multiprocessing.Pool()
+pool.map(_save_to_tensors, list_tcl_files)
+pool.close()
+pool.join()
+
+```

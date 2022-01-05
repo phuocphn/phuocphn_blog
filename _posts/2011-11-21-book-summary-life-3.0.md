@@ -2,7 +2,7 @@
 layout: post
 title:  "Life 3.0: Being Human in the Age of Artificial Intelligence"
 date:   2021-11-21 21:10:04 +0900
-categories: book_summary 
+categories: book_summaries
 tags: life AGI intelligence consciousness
 author: Phuoc. Pham
 comment: true

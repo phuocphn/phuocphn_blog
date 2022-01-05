@@ -73,3 +73,20 @@ source /etc/profile
 ```
 
 Ref: https://github.com/tensorflow/tensorflow/issues/45930
+
+
+**Run Linux Commands Using the timeout Tool**
+
+```bash
+timeout [OPTION] DURATION COMMAND [ARG]...
+
+```
+
+Example;
+
+```bash
+timeout 5s ping google.com
+
+```
+
+Ref: https://www.tecmint.com/run-linux-command-with-time-limit-and-timeout/
