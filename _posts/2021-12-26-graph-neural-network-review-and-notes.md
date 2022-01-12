@@ -151,16 +151,64 @@ There are some papers that try to avoid using
 Kipf [CoRR](https://arxiv.org/abs/1609.02907) approximate the **spectral method** of  [Convolutional Neural Networks on Graphs with Fast Localized Spectral Filtering](https://arxiv.org/abs/1606.09375) and weaken the dependency on the Lapclacian, but ultimately arrive at center-surround weighting of neighborhoods.
 
 
+### **Weisfeiler-Lehman (WL) Graph Isomorphism Test**
+
+*(in progress)*
+
+Similar to GNNs, the WL test iteratively updates a given node’s feature vector by aggregating feature vectors of its network neighbors. What makes the WL test so powerful is its injective aggregation update that maps
+different node neighborhoods to different feature vectors. Our key insight is that a GNN can have as large discriminative power as the WL test if the GNN’s aggregation scheme is highly expressive and can model injective functions. 
+
+
+#### **Graphs Isomorphism**
+
+- **D1**: Same graph (different layouts) + Same graph (different labels). All that matters are the connections: Graphs with the same connections (# vetices, #edges) are ismorphic. [9]
+- **D2**: Two graphs are isomorphic when there is an <ins>edge-preserving matching</ins> of their vertices.
+- **D3**: (Formal definition) / $$\textbf{G}_1$$ is isomorphic to $$\textbf{G}_2$$  means edge-preserving vertex matching: 
+
+$$\exists$$ bijection $$\text{f}: \textbf{V}_1 \to \textbf{V}_2 $$ with $$u - v $$ in $$\textbf{E}_1$$ IFF $$\text{f} (u) - \text{f} (v)$$ in $$\textbf{E}_2$$
+
+
+
+<p align="center" >
+  <img src="https://harryjo97.github.io/assets/post/Weisfeiler-Lehman-Algorithm/algorithm.PNG">
+</p>
+
+ The graph isomorphism problem asks whether two graphs are topologically identical. This is a challenging problem: no polynomial-time algorithm is known for it yet. The Weisfeiler-Lehman (WL) test of graph isomorphism (Weisfeiler & Lehman, 1968) is an effective and computationally efficient test that distinguishes a broad class of graphs. Its 1-dimensional form, “naïve vertex refinement”, is analogous to neighbor aggregation in GNNs. The
+WL test iteratively (1) aggregates the labels of nodes and their neighborhoods, and (2) hashes the  aggregated labels into unique new labels. The algorithm decides that two graphs are non-isomorphic if at some iteration the labels of the nodes between the two graphs differ. [10]
+
+<!-- Based on the WL test, Shervashidze et al. (2011) proposed the WL subtree kernel that measures the similarity between graphs. The kernel uses the counts of node labels at different iterations of the WL test as the feature vector of a graph. Intuitively, a node’s label at the k-th iteration of WL test represents a subtree structure of height k rooted at the node (Figure 1). Thus, the graph features considered by the WL subtree kernel are essentially counts of different rooted subtrees in the graph
+ -->
+
+
+#### **Injective Function**
+
+A function $$f$$: $$\textbf{X} \to \textbf{Y}$$ is not injective if two distinct elements $$a,b \in \textbf{X} $$ exist with $$f(a)=f(b)$$. If that is not the case then the function is injective. If that is not the case then the function is injective. [11]
+
+<p align="center" >
+  <img src="https://i.stack.imgur.com/mg8MW.jpg">
+</p>
+
+
 ### **Representive Papers.**
 
 *(in progress)*
 
-#### **Graph Convolutional Networks (GCNs) — Kipf and Welling**
+#### **Classic Papers**
 
-Among the most cited works in graph learning is a paper by Kipf and Welling. The paper introduced **spectral convolutions** to graph learning, and was dubbed simply as “graph convolutional networks”, which is a bit misleading since it is classified as a spectral method and is by no means the origin of all subsequent works in graph learning.
+- Graph Convolutional Networks (GCNs) — Kipf and Welling:  Among the most cited works in graph learning is a paper by Kipf and Welling. The paper introduced **spectral convolutions** to graph learning, and was dubbed simply as “graph convolutional networks”, which is a bit misleading since it is classified as a spectral method and is by no means the origin of all subsequent works in graph learning.
 
+
+#### **Generalization & Feature Representation**
+
+- [Generalization and Representational Limits of Graph Neural Networks](https://proceedings.mlr.press/v119/garg20c.html)
+- [Towards Scale-Invariant Graph-related Problem Solving by Iterative Homogeneous Graph Neural Networks](https://arxiv.org/pdf/2010.13547.pdf)
+- [On Size Generalization in Graph Neural Networks ](https://openreview.net/pdf?id=9p2CltauWEY)
+- [Simple scalable graph neural networks](https://towardsdatascience.com/simple-scalable-graph-neural-networks-7eb04f366d07)
 
 <br/>
+
+
+
 
 ---
 
@@ -177,7 +225,11 @@ Among the most cited works in graph learning is a paper by Kipf and Welling. The
 6. [Bridging the Gap Between Spectral and Spatial Domains in Graph Neural Networks](https://arxiv.org/pdf/2003.11702.pdf)
 7. [What is the difference between graph convolution in the spatial vs spectral domain?](https://ai.stackexchange.com/questions/14003/what-is-the-difference-between-graph-convolution-in-the-spatial-vs-spectral-doma)
 8. [Graph Convolutional Networks for Geometric Deep Learning](https://towardsdatascience.com/graph-convolutional-networks-for-geometric-deep-learning-1faf17dee008) - *a brief description about popular GCN papers*
-
+9. [2.8.3 Isomorphism: Video - MIT OpenCourseWare](https://www.youtube.com/watch?v=hVerxuP4cFg&ab_channel=MITOpenCourseWare)
+10. [How Powerful are Graph Neural Networks? - arXiv](https://openreview.net/pdf?id=ryGs6iA5Km)
+11. [What is the exact definition of an Injective Function](https://math.stackexchange.com/questions/1281906/what-is-the-exact-definition-of-an-injective-function)
+12. [Expressive power of graph neural networks and the Weisfeiler-Lehman test](https://towardsdatascience.com/expressive-power-of-graph-neural-networks-and-the-weisefeiler-lehman-test-b883db3c7c49)
+13. [Beyond Weisfeiler-Lehman: using substructures for provably expressive graph neural networks](https://towardsdatascience.com/beyond-weisfeiler-lehman-using-substructures-for-provably-expressive-graph-neural-networks-d476ad665fa3)
 
 #### **Related Resources:**
 1. [Gitta Kutyniok - Spectral Graph Convolutional Neural Networks Do Generalize](https://www.youtube.com/watch?v=Mo1A5AjzfC4)
