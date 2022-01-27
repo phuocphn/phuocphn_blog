@@ -204,6 +204,7 @@ A function $$f$$: $$\textbf{X} \to \textbf{Y}$$ is not injective if two distinct
 - [Towards Scale-Invariant Graph-related Problem Solving by Iterative Homogeneous Graph Neural Networks](https://arxiv.org/pdf/2010.13547.pdf)
 - [On Size Generalization in Graph Neural Networks ](https://openreview.net/pdf?id=9p2CltauWEY)
 - [Simple scalable graph neural networks](https://towardsdatascience.com/simple-scalable-graph-neural-networks-7eb04f366d07)
+- [Position-aware Graph Neural Networks](https://proceedings.mlr.press/v97/you19b/you19b.pdf)
 
 <br/>
 
@@ -230,6 +231,9 @@ A function $$f$$: $$\textbf{X} \to \textbf{Y}$$ is not injective if two distinct
 11. [What is the exact definition of an Injective Function](https://math.stackexchange.com/questions/1281906/what-is-the-exact-definition-of-an-injective-function)
 12. [Expressive power of graph neural networks and the Weisfeiler-Lehman test](https://towardsdatascience.com/expressive-power-of-graph-neural-networks-and-the-weisefeiler-lehman-test-b883db3c7c49)
 13. [Beyond Weisfeiler-Lehman: using substructures for provably expressive graph neural networks](https://towardsdatascience.com/beyond-weisfeiler-lehman-using-substructures-for-provably-expressive-graph-neural-networks-d476ad665fa3)
+14. [A Gentle Introduction to Graph Neural Networks](https://distill.pub/2021/gnn-intro/)
+
+
 
 #### **Related Resources:**
 1. [Gitta Kutyniok - Spectral Graph Convolutional Neural Networks Do Generalize](https://www.youtube.com/watch?v=Mo1A5AjzfC4)

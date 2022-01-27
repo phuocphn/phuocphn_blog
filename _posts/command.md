@@ -32,7 +32,7 @@ sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
 sudo apt install python3.8
 ```
-
+https://askubuntu.com/questions/217764/argument-list-too-long-when-copying-files
 
 #### **Install CUDA 11.1 and other related problems**
 
